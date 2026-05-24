@@ -1,47 +1,49 @@
-# Svelte + TS + Vite
+# ThumbnailGenerator (サムネイルジェネレータ)
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+Tauri, Svelte, および DaisyUI を使用して作成された、シンプルで強力なデスクトップ用サムネイル作成アプリです。
 
-## Recommended IDE Setup
+## 主な機能
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- **画像の読み込み**: ローカルの画像を読み込んで背景に設定できます。読み込んだ画像のサイズに合わせてキャンバスが自動調整されます。
+- **カスタム背景**: 画像を読み込まない場合は、キャンバスの縦横幅と背景色を自由に指定できます。
+- **テキストオーバーレイ**: キャンバスの中央にテキストを配置できます。
+- **豊富なフォント**: 16種類の日本語・英語Webフォントから選択可能です。
+- **カスタマイズ**: フォントサイズ、文字色、背景色などをリアルタイムで調整できます。
+- **設定の保存**: 最後に使用した設定（テキスト、サイズ、色、フォントなど）は自動的に保存され、次回起動時に復元されます。
+- **書き出し**: 生成したサムネイルを PNG または WebP 形式で保存できます。
+- **ダークモード対応**: システムの設定に合わせて、UIが自動的にライトモード/ダークモードに切り替わります。
 
-## Need an official Svelte framework?
+## 使用技術
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+- **Frontend**: Svelte 5, Vite, Tailwind CSS 4, DaisyUI 5
+- **Backend**: Tauri v2 (Rust)
+- **Fonts**: Google Fonts
 
-## Technical considerations
+## 開発環境のセットアップ
 
-**Why use this over SvelteKit?**
+### 前提条件
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+- [Node.js](https://nodejs.org/) (最新のLTS推奨)
+- [Rust](https://www.rust-lang.org/) (Tauriの開発に必要)
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+### インストール
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+npm install
 ```
+
+### 開発モードでの実行
+
+```bash
+npm run tauri dev
+```
+
+### ビルド (インストーラーの生成)
+
+```bash
+npm run tauri build
+```
+
+## ライセンス
+
+MIT
